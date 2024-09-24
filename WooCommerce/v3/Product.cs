@@ -122,7 +122,7 @@ namespace WooCommerceNET.WooCommerce.v3
         [DataMember(EmitDefaultValue = false)]
         public string sku { get; set; }
         
-        [DataMember(EmitDefaultValue = false, Name = "price")]
+        [DataMember(EmitDefaultValue = true, Name = "price")]
         protected object priceValue { get; set; }
         /// <summary>
         /// Current product price. 
@@ -130,14 +130,14 @@ namespace WooCommerceNET.WooCommerce.v3
         /// </summary>
         public decimal? price { get; set; }
         
-        [DataMember(EmitDefaultValue = false, Name = "regular_price")]
+        [DataMember(EmitDefaultValue = true, Name = "regular_price")]
         protected object regular_priceValue { get; set; }
         /// <summary>
         /// Product regular price.
         /// </summary>
         public decimal? regular_price { get; set; }
         
-        [DataMember(EmitDefaultValue = false, Name = "sale_price")]
+        [DataMember(EmitDefaultValue = true, Name = "sale_price")]
         protected object sale_priceValue { get; set; }
         /// <summary>
         /// Product sale price.
@@ -395,6 +395,9 @@ namespace WooCommerceNET.WooCommerce.v3
         [DataMember(EmitDefaultValue = false)]
         public List<ProductCategoryLine> categories { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public List<ProductSeries> series { get; set; }
+
         /// <summary>
         /// List of tags. See Product - Tags properties
         /// </summary>
@@ -601,4 +604,17 @@ namespace WooCommerceNET.WooCommerce.v3
 
     [DataContract]
     public class ProductError : v2.ProductError { }
+
+    [DataContract]
+    public class ProductSeries
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public ulong? id { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string name { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public string slug { get; set; }
+    }
 }

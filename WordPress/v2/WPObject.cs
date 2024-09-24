@@ -9,9 +9,10 @@ using WooCommerceNET.Base;
 
 namespace WooCommerce.NET.WordPress.v2
 {
-    public class WPObject<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
+    public class WPObject<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
         where T1 : Posts where T2 : PostRevisions where T3 : Categories where T4 : Tags where T5 : Pages where T6 : Comments
         where T7 : Taxonomies where T8 : Media where T9 : Users where T10 : PostTypes where T11 : PostStatuses where T12 : Settings
+        where T13 : Series  
     {
        
         protected RestAPI API { get; set; }
@@ -28,8 +29,10 @@ namespace WooCommerce.NET.WordPress.v2
             Media = new WPMediaItem(api);
             Users = new WCItem<T9>(api);
             PostTypes = new WCItem<T10>(api);
-            PostStatuses = new WCItem<T11>(api);
+            PostStatuses = new WCItem<T11>(api);            
             Settings = new WPSettingItem(api);
+            Series = new WCItem<T13>(api);
+
         }
 
         public WPPostItem Post { get; protected set; }
@@ -53,6 +56,8 @@ namespace WooCommerce.NET.WordPress.v2
         public WCItem<T11> PostStatuses { get; protected set; }
 
         public WPSettingItem Settings { get; protected set; }
+
+        public WCItem<T13> Series { get; protected set; }
 
         public class WPPostItem : WCItem<T1>
         {
@@ -97,7 +102,7 @@ namespace WooCommerce.NET.WordPress.v2
         }
     }
 
-    public class WPObject: WPObject<Posts, PostRevisions, Categories, Tags, Pages, Comments, Taxonomies, Media, Users, PostTypes, PostStatuses, Settings>
+    public class WPObject: WPObject<Posts, PostRevisions, Categories, Tags, Pages, Comments, Taxonomies, Media, Users, PostTypes, PostStatuses, Settings, Series>
     {
         public WPObject(RestAPI api) : base(api)
         {
